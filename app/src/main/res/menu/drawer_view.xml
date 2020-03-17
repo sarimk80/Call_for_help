@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/group"
+        android:checkableBehavior="single">
+
+
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Home" />
+        <item
+            android:id="@+id/emergency"
+            android:icon="@drawable/ic_local_hospital_black_24dp"
+            android:title="Emergency Contact" />
+        <item
+            android:id="@+id/power"
+            android:icon="@drawable/ic_power_settings_new_black_24dp"
+            android:title="Power" />
+
+        <item
+            android:id="@+id/schedule"
+            android:icon="@drawable/ic_schedule_black_24dp"
+            android:title="Schedule" />
+
+        <item
+            android:id="@+id/location"
+            android:icon="@drawable/ic_location_on_black_24dp"
+            android:title="Location" />
+
+        <item
+            android:id="@+id/safety"
+            android:icon="@drawable/ic_security_24px"
+            android:title="Safety Zone" />
+
+    </group>
+
+</menu>

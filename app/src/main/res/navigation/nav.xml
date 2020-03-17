@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.example.callforhelp.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_to_emergencyFragment"
+            app:destination="@id/emergency" />
+        <action
+            android:id="@+id/action_home_to_power"
+            app:destination="@id/power" />
+        <action
+            android:id="@+id/action_home_to_schedule"
+            app:destination="@id/schedule" />
+    </fragment>
+    <fragment
+        android:id="@+id/emergency"
+        android:name="com.example.callforhelp.EmergencyFragment"
+        android:label="Emergency"
+        tools:layout="@layout/fragment_emergency" />
+    <fragment
+        android:id="@+id/power"
+        android:name="com.example.callforhelp.PowerFragment"
+        android:label="Power"
+        tools:layout="@layout/fragment_power" />
+    <fragment
+        android:id="@+id/schedule"
+        android:name="com.example.callforhelp.ScheduleFragment"
+        android:label="Schedule"
+        tools:layout="@layout/fragment_schedule" />
+    <fragment
+        android:id="@+id/location"
+        android:name="com.example.callforhelp.LocationFragment"
+        android:label="Location"
+        tools:layout="@layout/fragment_location" />
+    <fragment
+        android:id="@+id/safety"
+        android:name="com.example.callforhelp.SafetyFragment"
+        android:label="Safety"
+        tools:layout="@layout/fragment_safety" />
+</navigation>

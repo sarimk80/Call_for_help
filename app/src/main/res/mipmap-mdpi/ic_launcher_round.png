@@ -1,0 +1,92 @@
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+class Filter extends StatefulWidget {
+  @override
+  _FilterState createState() => _FilterState();
+}
+
+class _FilterState extends State<Filter> {
+  RangeValues _rangeValues = RangeValues(0, 45);
+
+  //int _value = 0;
+  Map<String, int> _value = {
+    'Art and Culture': 0,
+    'Learning': 0,
+    'Fashion': 0,
+    'Romantic': 0,
+    'History': 0,
+    'Adventure': 0,
+    'Photography': 0,
+    'Nature': 0,
+    'Night Life': 0,
+    'Mix and Minglinig': 0,
+    'Sports': 0,
+    'Food and Beverages': 0
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black87,
+            ),
+            onPressed: () {}),
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  'Filter',
+                  style: Theme.of(context).textTheme.title,
+                ),
+                FlatButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Apply',
+                    style: Theme.of(context)
+                        .textTheme
+                        .body2
+                        .copyWith(color: Theme.of(context).accentColor),
+                  ),
+                )
+              ],
+            ),
+            Divider(),
+            Text(
+              'Price Per Person',
+              style: Theme.of(context).textTheme.subtitle,
+            ),
+            RangeSlider(
+                activeColor: Theme.of(context).accentColor,
+                inactiveColor: Theme.of(context).accentColor.withOpacity(0.4),
+                labels:
+                    RangeLabels('${_rangeValues.start}', '${_rangeValues.end}'),
+                min: 0,
+                max: 200,
+                divisions: 10,
+                values: _rangeValues,
+                onChanged: (value) {
+                  setState(() {
+                    _rangeValues = value;
+                  });
+                }),
+            Divider(),
+            Text(
+              'Categories',
+              style: Theme.of(context).textTheme.subtitle,
+            ),
+            Padding(
+              padding: EdgeInsets.all(10),
+       
