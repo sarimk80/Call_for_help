@@ -134,7 +134,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void Contacts() {
-
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_home_to_emergencyFragment);
             }
 
             @Override

@@ -51,6 +51,6 @@
     <fragment
         android:id="@+id/recordFragment"
         android:name="com.example.callforhelp.RecordFragment"
-        android:label="fragment_record"
+        android:label="Record"
         tools:layout="@layout/fragment_record" />
 </navigation>
