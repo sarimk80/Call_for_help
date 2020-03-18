@@ -3,6 +3,10 @@ package com.example.callforhelp;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +29,8 @@ import com.example.callforhelp.service.DataManager;
 import com.google.android.material.snackbar.Snackbar;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
+import static android.app.Activity.RESULT_OK;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +39,7 @@ public class EmergencyFragment extends Fragment implements DataCallback {
 
     private FragmentEmergencyBinding emergencyBinding;
     private DataManager manager;
+    private final static int RESULT_REQUES_1 = 1;
 
     public EmergencyFragment() {
         // Required empty public constructor
@@ -90,7 +98,78 @@ public class EmergencyFragment extends Fragment implements DataCallback {
             public void help() {
 
             }
+
+            @Override
+            public void selectContact1() {
+                Log.d("Main", "Click");
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+                startActivityForResult(intent, RESULT_REQUES_1);
+            }
+
+            @Override
+            public void selectContact2() {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+                startActivityForResult(intent, 2);
+            }
+
+            @Override
+            public void selectContact3() {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+                startActivityForResult(intent, 3);
+            }
+
+            @Override
+            public void selectContact4() {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+                startActivityForResult(intent, 4);
+            }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        if (requestCode == RESULT_REQUES_1) {
+
+            Uri contactData = data.getData();
+            Cursor cursor = getActivity().getContentResolver().query(contactData, null, null, null, null);
+            cursor.moveToFirst();
+            int phoneNumber = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+
+            emergencyBinding.number1.setText(cursor.getString(phoneNumber));
+
+        }
+
+        if (requestCode == 2) {
+
+            Uri contactData = data.getData();
+            Cursor cursor = getActivity().getContentResolver().query(contactData, null, null, null, null);
+            cursor.moveToFirst();
+            emergencyBinding.number2.setText(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
+
+        }
+        if (requestCode == 3) {
+
+            Uri contactData = data.getData();
+            Cursor cursor = getActivity().getContentResolver().query(contactData, null, null, null, null);
+            cursor.moveToFirst();
+            emergencyBinding.number3.setText(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
+
+        }
+        if (requestCode == 4) {
+
+            Uri contactData = data.getData();
+            Cursor cursor = getActivity().getContentResolver().query(contactData, null, null, null, null);
+            cursor.moveToFirst();
+            emergencyBinding.number4.setText(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
+
+        }
     }
 
     @Override
