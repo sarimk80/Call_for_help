@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_home_to_schedule"
             app:destination="@id/schedule" />
+        <action
+            android:id="@+id/action_home_to_recordFragment"
+            app:destination="@id/recordFragment" />
     </fragment>
     <fragment
         android:id="@+id/emergency"
@@ -45,4 +48,9 @@
         android:name="com.example.callforhelp.SafetyFragment"
         android:label="Safety"
         tools:layout="@layout/fragment_safety" />
+    <fragment
+        android:id="@+id/recordFragment"
+        android:name="com.example.callforhelp.RecordFragment"
+        android:label="fragment_record"
+        tools:layout="@layout/fragment_record" />
 </navigation>
