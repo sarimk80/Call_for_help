@@ -9,4 +9,8 @@ public interface DataCallback {
     void error();
 
     void getData(Phone phone);
+
+    void updateData();
+
+    void updateError();
 }

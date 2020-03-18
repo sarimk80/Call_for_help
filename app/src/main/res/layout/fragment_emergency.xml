@@ -8,6 +8,10 @@
             name="phone"
             type="com.example.callforhelp.db.Phone" />
 
+        <variable
+            name="event"
+            type="com.example.callforhelp.events.EmergencyFragmentEvent" />
+
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -18,36 +22,115 @@
         android:padding="16dp"
         tools:context=".EmergencyFragment">
 
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Phone Number"
-            android:inputType="phone"
-            android:text="@{phone.number1}" />
+            android:orientation="horizontal"
 
-        <EditText
+            android:weightSum="2">
+
+            <EditText
+                android:id="@+id/number1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="Enter Phone Number"
+                android:inputType="phone"
+                android:text="@{phone.number1}" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:background="@color/colorPrimary"
+                android:onClick="@{(v)->event.UpdateNumber1()}"
+                android:text="Update" />
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="Enter Phone Number"
-            android:inputType="phone"
-            android:text="@{phone.number2}" />
+            android:orientation="horizontal"
+            android:weightSum="2">
 
-        <EditText
+            <EditText
+                android:id="@+id/number2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="Enter Phone Number"
+                android:inputType="phone"
+                android:text="@{phone.number2}" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:background="@color/colorPrimary"
+                android:onClick="@{(v)->event.UpdateNumber2()}"
+                android:text="Update" />
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="Enter Phone Number"
-            android:inputType="phone"
-            android:text="@{phone.number3}" />
+            android:orientation="horizontal"
+            android:weightSum="2">
 
-        <EditText
+            <EditText
+                android:id="@+id/number3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="Enter Phone Number"
+                android:inputType="phone"
+                android:text="@{phone.number3}" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:background="@color/colorPrimary"
+                android:onClick="@{(v)->event.UpdateNumber3()}"
+                android:text="Update" />
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="Enter Phone Number"
-            android:inputType="phone"
-            android:text="@{phone.number4}" />
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <EditText
+                android:id="@+id/number4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="Enter Phone Number"
+                android:inputType="phone"
+                android:text="@{phone.number4}" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:background="@color/colorPrimary"
+                android:onClick="@{(v)->event.UpdateNumber4()}"
+                android:text="Update" />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:onClick="@{(v)->event.help()}"
+            android:text="Call for help" />
     </LinearLayout>
 
 </layout>

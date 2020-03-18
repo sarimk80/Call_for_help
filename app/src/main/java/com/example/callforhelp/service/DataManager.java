@@ -58,6 +58,102 @@ public class DataManager {
         });
     }
 
+    public void updateNumber1(final DataCallback callback, final String number1) {
+
+        Completable.fromAction(() -> {
+
+            phoneDataBase.phoneDao().updateNumber1(number1);
+        }).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe(new CompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onComplete() {
+                callback.updateData();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                callback.updateError();
+            }
+        });
+
+    }
+
+    public void updateNumber2(final DataCallback callback, final String number1) {
+
+        Completable.fromAction(() -> {
+
+            phoneDataBase.phoneDao().updateNumber2(number1);
+        }).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe(new CompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onComplete() {
+                callback.updateData();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                callback.updateError();
+            }
+        });
+
+    }
+
+    public void updateNumber3(final DataCallback callback, final String number1) {
+
+        Completable.fromAction(() -> {
+
+            phoneDataBase.phoneDao().updateNumber3(number1);
+        }).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe(new CompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onComplete() {
+                callback.updateData();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                callback.updateError();
+            }
+        });
+
+    }
+
+    public void updateNumber4(final DataCallback callback, final String number1) {
+
+        Completable.fromAction(() -> {
+
+            phoneDataBase.phoneDao().updateNumber4(number1);
+        }).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe(new CompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onComplete() {
+                callback.updateData();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                callback.updateError();
+            }
+        });
+
+    }
+
     @SuppressLint("CheckResult")
     public void getData(final DataCallback callback) {
 
@@ -65,9 +161,6 @@ public class DataManager {
             callback.getData(phone);
         });
 
-//        Disposable disposable=phoneDataBase.phoneDao().getAllPhones().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(phone -> {
-//           callback.getData(phone);
-//        });
 
     }
 }
