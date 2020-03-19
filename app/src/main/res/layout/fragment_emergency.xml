@@ -129,9 +129,25 @@
                 android:text="Update" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <EditText
+            android:id="@+id/edt_help"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="@string/app_name"
+            android:inputType="text"
+            android:text="Help" />
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:background="@color/colorPrimary"
             android:onClick="@{(v)->event.help()}"
             android:text="Call for help" />

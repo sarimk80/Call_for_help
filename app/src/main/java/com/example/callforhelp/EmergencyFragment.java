@@ -15,6 +15,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import android.provider.ContactsContract;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +30,13 @@ import com.example.callforhelp.service.DataManager;
 import com.google.android.material.snackbar.Snackbar;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
-import static android.app.Activity.RESULT_OK;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 
 /**
@@ -96,6 +103,30 @@ public class EmergencyFragment extends Fragment implements DataCallback {
 
             @Override
             public void help() {
+                SmsManager smsManager = SmsManager.getDefault();
+                String[] numbers = {emergencyBinding.number1.getText().toString(), emergencyBinding.number2.getText().toString(), emergencyBinding.number3.getText().toString(), emergencyBinding.number4.getText().toString()};
+                Observable.fromArray(numbers).zipWith(Observable.interval(10, TimeUnit.SECONDS), (item, interval) -> item).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        smsManager.sendTextMessage(s, null, emergencyBinding.edtHelp.getText().toString(), null, null);
+                        Snackbar.make(emergencyBinding.getRoot(), "Message Successfully Send", Snackbar.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d("Main", e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
 
             }
 
@@ -151,7 +182,7 @@ public class EmergencyFragment extends Fragment implements DataCallback {
             Uri contactData = data.getData();
             Cursor cursor = getActivity().getContentResolver().query(contactData, null, null, null, null);
             cursor.moveToFirst();
-            emergencyBinding.number2.setText(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
+            emergencyBinding.number2.setText(cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)));
 
         }
         if (requestCode == 3) {
@@ -159,7 +190,7 @@ public class EmergencyFragment extends Fragment implements DataCallback {
             Uri contactData = data.getData();
             Cursor cursor = getActivity().getContentResolver().query(contactData, null, null, null, null);
             cursor.moveToFirst();
-            emergencyBinding.number3.setText(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
+            emergencyBinding.number3.setText(cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER)));
 
         }
         if (requestCode == 4) {
@@ -167,7 +198,7 @@ public class EmergencyFragment extends Fragment implements DataCallback {
             Uri contactData = data.getData();
             Cursor cursor = getActivity().getContentResolver().query(contactData, null, null, null, null);
             cursor.moveToFirst();
-            emergencyBinding.number4.setText(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
+            emergencyBinding.number4.setText(cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER)));
 
         }
     }
